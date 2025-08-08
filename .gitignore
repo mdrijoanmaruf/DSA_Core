@@ -1,0 +1,4 @@
+# Ignore all output folders and their contents
+output/
+**/output/
+output
