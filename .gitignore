@@ -1,4 +1,9 @@
+# Ignore .vscode folder
+.vscode/
+# Ignore all .exe files everywhere
+*.exe
 # Ignore all output folders and their contents
 output/
 **/output/
 output
+.vscode
