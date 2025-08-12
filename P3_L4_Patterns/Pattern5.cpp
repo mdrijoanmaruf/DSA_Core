@@ -4,19 +4,19 @@ using namespace std;
 int main() {
     int n;
     cin >> n;
+    int count = 0;
+
     for(int i = 0; i < n; i ++){
-        for(int j = 0; j < n; j ++){
-            cout << i+1 << " ";
+        for(int j = 0; j < n; j++){
+            count = count + 1;
+            cout << count << " ";
         }
         cout << endl;
     }
     return 0;
 }
 
-// Input : 5
-// Output : 
-// 1 1 1 1 1 
-// 2 2 2 2 2
-// 3 3 3 3 3
-// 4 4 4 4 4
-// 5 5 5 5 5
+// Input : 3
+// 1 2 3 
+// 4 5 6 
+// 7 8 9
