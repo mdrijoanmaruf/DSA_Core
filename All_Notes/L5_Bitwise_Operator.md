@@ -311,7 +311,7 @@ public:
     // Toggle bit at position pos
     static int toggleBit(int num, int pos) {
         return num ^ (1 << pos);
-    }
+    } 
     
     // Check if bit at position pos is set
     static bool checkBit(int num, int pos) {
