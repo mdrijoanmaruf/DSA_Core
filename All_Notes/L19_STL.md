@@ -371,29 +371,70 @@ auto it = um.find("key"); // Average O(1) lookup
 
 ```cpp
 #include <algorithm>
+#include <numeric> // For accumulate
+#include <vector>
+#include <iostream>
+using namespace std;
 
 vector<int> v{3, 1, 4, 1, 5, 9, 2, 6};
 
 // Sorting
 sort(v.begin(), v.end());              // Ascending order
-sort(v.begin(), v.end(), greater<>()); // Descending order
+sort(v.begin(), v.end(), greater<int>()); // Descending order
 
-// Searching
-auto it = find(v.begin(), v.end(), 5); // Linear search
-bool found = binary_search(v.begin(), v.end(), 5); // Binary search (sorted)
+// Reverse
+reverse(v.begin(), v.end());           // Reverse the vector
 
-// Bounds (on sorted container)
-auto lower = lower_bound(v.begin(), v.end(), 3);
-auto upper = upper_bound(v.begin(), v.end(), 3);
+// Find
+auto it = find(v.begin(), v.end(), 5); // Find value 5
+if (it != v.end()) cout << "Found 5 at index " << distance(v.begin(), it) << endl;
 
-// Min/Max
+// Count
+int cnt = count(v.begin(), v.end(), 1); // Count occurrences of 1
+
+// Accumulate (sum)
+int sum = accumulate(v.begin(), v.end(), 0); // Sum of all elements
+
+// Unique (remove consecutive duplicates)
+auto last = unique(v.begin(), v.end());
+v.erase(last, v.end());
+
+// Rotate
+rotate(v.begin(), v.begin() + 2, v.end()); // Rotate left by 2 positions
+
+// Partition (separate even and odd)
+auto part = partition(v.begin(), v.end(), [](int x){ return x % 2 == 0; });
+// Now evens are before part, odds after
+
+// Lower/Upper Bound (on sorted vector)
+sort(v.begin(), v.end());
+auto lb = lower_bound(v.begin(), v.end(), 4); // First >= 4
+auto ub = upper_bound(v.begin(), v.end(), 4); // First > 4
+
+// Next/Prev Permutation
+next_permutation(v.begin(), v.end()); // Next lexicographical permutation
+prev_permutation(v.begin(), v.end()); // Previous permutation
+
+// Min/Max Element
 auto min_it = min_element(v.begin(), v.end());
 auto max_it = max_element(v.begin(), v.end());
 
-// Counting
-int count = count(v.begin(), v.end(), 1); // Count occurrences of 1
+// All_of, any_of, none_of
+bool all_pos = all_of(v.begin(), v.end(), [](int x){ return x > 0; });
+bool any_even = any_of(v.begin(), v.end(), [](int x){ return x % 2 == 0; });
+bool none_neg = none_of(v.begin(), v.end(), [](int x){ return x < 0; });
 
-// Removing
+// For_each
+for_each(v.begin(), v.end(), [](int &x){ x *= 2; }); // Double each element
+
+// Copy
+vector<int> v2(8);
+copy(v.begin(), v.end(), v2.begin());
+
+// Fill
+fill(v2.begin(), v2.end(), 7); // Fill all with 7
+
+// Remove (erase-remove idiom)
 v.erase(remove(v.begin(), v.end(), 1), v.end()); // Remove all 1s
 ```
 
